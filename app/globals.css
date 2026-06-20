@@ -162,9 +162,93 @@
   }
   body {
     @apply bg-background text-foreground;
+    min-height: 100vh;
+    overflow-x: hidden;
   }
   html {
     @apply font-sans;
     scroll-behavior: smooth;
   }
+}
+
+@keyframes twinkle {
+  0%,
+  100% {
+    opacity: 0.25;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.6);
+  }
+}
+
+@keyframes floatStar {
+  0%,
+  100% {
+    transform: translateY(0px) rotate(0deg);
+    opacity: 0.5;
+  }
+  50% {
+    transform: translateY(-18px) rotate(8deg);
+    opacity: 1;
+  }
+}
+
+.star-twinkle {
+  animation-name: twinkle;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+  box-shadow: 0 0 8px color-mix(in oklab, var(--primary) 50%, white 20%);
+}
+
+.floating-star {
+  position: absolute;
+  color: color-mix(in oklab, var(--primary) 70%, white 20%);
+  opacity: 0.55;
+  animation: floatStar 5s ease-in-out infinite;
+  filter: drop-shadow(
+    0 0 10px color-mix(in oklab, var(--accent) 40%, white 25%)
+  );
+  user-select: none;
+  line-height: 1;
+}
+
+.dark .floating-star {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.star-1 {
+  top: 12%;
+  left: 8%;
+  font-size: 2.5rem;
+  animation-delay: 0s;
+}
+
+.star-2 {
+  top: 20%;
+  right: 12%;
+  font-size: 1.75rem;
+  animation-delay: 1s;
+}
+
+.star-3 {
+  top: 38%;
+  left: 15%;
+  font-size: 1.25rem;
+  animation-delay: 2s;
+}
+
+.star-4 {
+  top: 62%;
+  right: 18%;
+  font-size: 2rem;
+  animation-delay: 0.5s;
+}
+
+.star-5 {
+  bottom: 12%;
+  left: 50%;
+  font-size: 1.5rem;
+  animation-delay: 1.8s;
 }
