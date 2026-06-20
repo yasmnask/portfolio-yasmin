@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { PROJECTS } from "@/lib/constants";
-import { ExternalLink } from "lucide-react";
+import { ExternalLink, ArrowRight, ChevronUp } from "lucide-react";
 import Image from "next/image";
 import { fadeUp, staggerContainer, scaleIn } from "@/lib/animations";
 import { useScrollAnimation } from "@/hooks/use-scroll-animation";
@@ -20,11 +20,15 @@ const categories = [
 export function Projects() {
   const { ref, isVisible } = useScrollAnimation();
   const [activeCategory, setActiveCategory] = useState("All Projects");
-
+  const [showAll, setShowAll] = useState(false);
   const filteredProjects =
     activeCategory === "All Projects"
       ? PROJECTS
       : PROJECTS.filter((project) => project.category === activeCategory);
+  const displayedProjects =
+    activeCategory === "All Projects" && !showAll
+      ? filteredProjects.slice(0, 4)
+      : filteredProjects;
 
   return (
     <section
@@ -62,7 +66,10 @@ export function Projects() {
           {categories.map((category) => (
             <button
               key={category}
-              onClick={() => setActiveCategory(category)}
+              onClick={() => {
+                setActiveCategory(category);
+                setShowAll(false);
+              }}
               className={`px-4 py-2 rounded-full border transition-all duration-300 text-sm font-medium ${
                 activeCategory === category
                   ? "bg-primary text-white border-primary"
@@ -79,8 +86,16 @@ export function Projects() {
           className="grid md:grid-cols-2 gap-8"
           variants={staggerContainer}
         >
-          {filteredProjects.map((project, index) => (
-            <motion.div key={index} variants={scaleIn} className="group">
+          {displayedProjects.map((project, index) => (
+            <motion.div
+              key={index}
+              variants={scaleIn}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4 }}
+              className="group"
+            >
+              {" "}
               <a
                 href={project.link}
                 target="_blank"
@@ -131,6 +146,53 @@ export function Projects() {
             </motion.div>
           ))}
         </motion.div>
+
+        {/* Show More / Show Less */}
+        {activeCategory === "All Projects" && filteredProjects.length > 4 && (
+          <motion.div variants={fadeUp} className="flex justify-center mt-12">
+            {/* Button */}
+            <div className="flex justify-center"></div>
+            <button
+              onClick={() => setShowAll(!showAll)}
+              className="
+          group
+          flex
+          items-center
+          gap-2
+          text-primary
+          font-semibold
+          transition-all
+          duration-300
+        "
+            >
+              {showAll ? (
+                <>
+                  Show Less
+                  <ChevronUp
+                    size={18}
+                    className="
+                transition-transform
+                duration-300
+                group-hover:-translate-y-1
+              "
+                  />
+                </>
+              ) : (
+                <>
+                  Show All Projects
+                  <ArrowRight
+                    size={18}
+                    className="
+                transition-transform
+                duration-300
+                group-hover:translate-x-1
+              "
+                  />
+                </>
+              )}
+            </button>
+          </motion.div>
+        )}
       </motion.div>
     </section>
   );
