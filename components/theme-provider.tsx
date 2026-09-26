@@ -1,6 +1,7 @@
 'use client'
 
 import { createContext, useContext, useEffect, useState } from 'react'
+import { MotionConfig } from 'framer-motion'
 
 interface ThemeContextType {
   isDark: boolean
@@ -26,6 +27,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
   }, [])
 
   useEffect(() => {
+    if (!mounted) return
     const root = document.documentElement
     if (isDark) {
       root.classList.add('dark')
@@ -34,13 +36,13 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
       root.classList.remove('dark')
       localStorage.setItem('theme', 'light')
     }
-  }, [isDark])
+  }, [isDark, mounted])
 
   const toggleTheme = () => setIsDark(!isDark)
 
   return (
     <ThemeContext.Provider value={{ isDark, toggleTheme }}>
-      {children}
+      <MotionConfig reducedMotion="user">{children}</MotionConfig>
     </ThemeContext.Provider>
   )
 }

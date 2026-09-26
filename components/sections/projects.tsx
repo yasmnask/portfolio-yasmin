@@ -33,25 +33,30 @@ export function Projects() {
   return (
     <section
       id="projects"
-      className="py-20 px-4 sm:px-6 lg:px-8 bg-secondary/30"
+      className="relative py-16 px-4 sm:px-6 lg:px-8 bg-secondary/30 scroll-mt-20 overflow-hidden"
       ref={ref}
     >
+      {/* Controlled red wash (dark mode only) */}
+      <div
+        aria-hidden="true"
+        className="brush brush-c w-[520px] h-[300px] -top-10 -right-40 opacity-30 -rotate-6"
+      />
       <motion.div
-        className="max-w-6xl mx-auto"
+        className="relative max-w-6xl mx-auto"
         variants={staggerContainer}
         initial="initial"
         animate={isVisible ? "animate" : "initial"}
       >
         <motion.h2
           variants={fadeUp}
-          className="text-4xl font-bold text-center text-foreground mb-4"
+          className="text-3xl font-bold text-center text-foreground mb-3"
         >
           Projects & Research
         </motion.h2>
 
         <motion.p
           variants={fadeUp}
-          className="text-center text-muted-foreground max-w-3xl mx-auto mb-10"
+          className="text-center text-muted-foreground max-w-3xl mx-auto mb-8"
         >
           A collection of software development, data analytics, and research
           projects that reflect my academic journey, technical skills, and
@@ -61,7 +66,7 @@ export function Projects() {
         {/* Category Filter */}
         <motion.div
           variants={fadeUp}
-          className="flex flex-wrap justify-center gap-3 mb-12"
+          className="flex flex-wrap justify-center gap-2 mb-8"
         >
           {categories.map((category) => (
             <button
@@ -70,10 +75,10 @@ export function Projects() {
                 setActiveCategory(category);
                 setShowAll(false);
               }}
-              className={`px-4 py-2 rounded-full border transition-all duration-300 text-sm font-medium ${
+              className={`min-h-11 px-4 py-2 rounded-full border transition-all duration-300 text-sm font-medium focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary ${
                 activeCategory === category
-                  ? "bg-primary text-white border-primary"
-                  : "bg-background border-border hover:border-primary/40"
+                  ? "bg-primary text-white border-primary shadow-[0_0_24px_-8px_rgba(254,46,75,0.7)]"
+                  : "bg-background border-border hover:border-primary/40 hover:text-primary"
               }`}
             >
               {category}
@@ -81,9 +86,17 @@ export function Projects() {
           ))}
         </motion.div>
 
+        {filteredProjects.length === 0 && (
+          <p className="text-center text-muted-foreground mb-12">
+            No projects in this category yet — my data work currently lives in
+            dashboards and reports from my Data Analyst internship and academic
+            projects.
+          </p>
+        )}
+
         {/* Projects Grid */}
         <motion.div
-          className="grid md:grid-cols-2 gap-8"
+          className="grid md:grid-cols-2 gap-6"
           variants={staggerContainer}
         >
           {displayedProjects.map((project, index) => (
@@ -95,18 +108,18 @@ export function Projects() {
               transition={{ duration: 0.4 }}
               className="group"
             >
-              {" "}
               <a
                 href={project.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="block overflow-hidden rounded-2xl border border-border bg-background hover:border-primary/50 hover:shadow-xl transition-all duration-300"
+                className="gloss surface relative block overflow-hidden rounded-2xl border border-border bg-card hover:border-primary/50 hover:shadow-[0_24px_60px_-24px_rgba(254,46,75,0.28)] transition-all duration-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
               >
-                <div className="relative h-64 bg-secondary overflow-hidden">
+                <div className="relative h-52 bg-secondary overflow-hidden">
                   <Image
                     src={project.image}
                     alt={project.title}
                     fill
+                    sizes="(max-width: 768px) 100vw, 50vw"
                     className="object-cover group-hover:scale-105 transition-transform duration-500"
                   />
 
@@ -117,16 +130,16 @@ export function Projects() {
                   </div>
                 </div>
 
-                <div className="p-6">
-                  <h3 className="text-xl font-bold text-foreground mb-2">
+                <div className="p-5">
+                  <h3 className="text-lg font-bold text-foreground mb-2">
                     {project.title}
                   </h3>
 
-                  <p className="text-muted-foreground text-sm mb-4">
+                  <p className="text-muted-foreground text-sm mb-3">
                     {project.description}
                   </p>
 
-                  <div className="flex flex-wrap gap-2 mb-5">
+                  <div className="flex flex-wrap gap-2 mb-4">
                     {project.tags.map((tag) => (
                       <span
                         key={tag}
@@ -138,7 +151,9 @@ export function Projects() {
                   </div>
 
                   <div className="flex items-center gap-2 text-primary font-medium">
-                    View Project
+                    {project.category === "Research Publications"
+                      ? "View Publication"
+                      : "View Project"}
                     <ExternalLink size={16} />
                   </div>
                 </div>
@@ -149,20 +164,26 @@ export function Projects() {
 
         {/* Show More / Show Less */}
         {activeCategory === "All Projects" && filteredProjects.length > 4 && (
-          <motion.div variants={fadeUp} className="flex justify-center mt-12">
-            {/* Button */}
-            <div className="flex justify-center"></div>
+          <motion.div variants={fadeUp} className="flex justify-center mt-8">
             <button
               onClick={() => setShowAll(!showAll)}
               className="
           group
           flex
+          min-h-11
           items-center
+          justify-center
           gap-2
+          px-5
+          py-2.5
+          rounded-lg
           text-primary
           font-semibold
           transition-all
           duration-300
+          focus-visible:outline-2
+          focus-visible:outline-offset-2
+          focus-visible:outline-primary
         "
             >
               {showAll ? (

@@ -35,16 +35,22 @@ export function StarBackground() {
 
   return (
     <div className="pointer-events-none fixed inset-0 z-0 overflow-hidden">
-      {/* Soft glow blobs */}
-      <div className="absolute top-[10%] left-[8%] h-40 w-40 rounded-full bg-primary/10 blur-3xl" />
-      <div className="absolute top-[30%] right-[10%] h-56 w-56 rounded-full bg-accent/10 blur-3xl" />
-      <div className="absolute bottom-[15%] left-[20%] h-52 w-52 rounded-full bg-primary/10 blur-3xl" />
+      {/* Large burgundy paint washes — dark mode atmosphere */}
+      <div className="absolute -top-48 left-1/2 hidden h-[36rem] w-[72rem] -translate-x-1/2 rounded-full bg-[#7F1D1D]/20 blur-[130px] dark:block" />
+      <div className="absolute top-[36%] -left-64 hidden h-[30rem] w-[48rem] rounded-full bg-[#991B1B]/15 blur-[130px] dark:block" />
+      <div className="absolute bottom-[-12%] -right-40 hidden h-[32rem] w-[54rem] rounded-full bg-[#7F1D1D]/15 blur-[140px] dark:block" />
+      <div className="absolute top-[28%] left-[58%] hidden h-72 w-72 rounded-full bg-[#FE2E4B]/10 blur-[110px] dark:block" />
 
-      {/* Small twinkling stars */}
+      {/* Soft pink washes — light mode atmosphere */}
+      <div className="absolute -top-48 left-1/2 h-[36rem] w-[72rem] -translate-x-1/2 rounded-full bg-[#F71D5D]/[0.07] blur-[130px] dark:hidden" />
+      <div className="absolute top-[36%] -left-64 h-[30rem] w-[48rem] rounded-full bg-[#FF4F78]/[0.06] blur-[130px] dark:hidden" />
+      <div className="absolute bottom-[-12%] -right-40 h-[32rem] w-[54rem] rounded-full bg-[#F71D5D]/[0.06] blur-[140px] dark:hidden" />
+
+      {/* Small twinkling stars — secondary texture */}
       {stars.map((star) => (
         <span
           key={star.id}
-          className="star-twinkle absolute rounded-full bg-primary/70 dark:bg-white/80"
+          className="star-twinkle absolute rounded-full bg-primary/50 dark:bg-white/40"
           style={{
             width: `${star.size}px`,
             height: `${star.size}px`,

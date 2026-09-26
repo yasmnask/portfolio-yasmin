@@ -12,9 +12,24 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Portfolio Yasmin",
-  description: "A showcase of projects, skills, and professional experience",
-  generator: "v0.app",
+  title: "Zakiyah Yasmin — Information Systems Student & Developer",
+  description:
+    "Portfolio of Zakiyah Yasmin, Information Systems student passionate about software development, data analytics, and digital transformation.",
+  authors: [{ name: "Zakiyah Yasmin" }],
+  creator: "Zakiyah Yasmin",
+  openGraph: {
+    title: "Zakiyah Yasmin — Information Systems Student & Developer",
+    description:
+      "Portfolio of Zakiyah Yasmin, Information Systems student passionate about software development, data analytics, and digital transformation.",
+    type: "website",
+    locale: "en_US",
+  },
+  twitter: {
+    card: "summary",
+    title: "Zakiyah Yasmin — Information Systems Student & Developer",
+    description:
+      "Portfolio of Zakiyah Yasmin, Information Systems student passionate about software development, data analytics, and digital transformation.",
+  },
   icons: {
     icon: [
       {
@@ -37,7 +52,7 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   colorScheme: "light dark",
   themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#F5F5F5" },
+    { media: "(prefers-color-scheme: light)", color: "#F7F8FA" },
     { media: "(prefers-color-scheme: dark)", color: "#1A1A1A" },
   ],
 };

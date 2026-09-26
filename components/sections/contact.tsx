@@ -49,35 +49,40 @@ export function Contact() {
   return (
     <section
       id="contact"
-      className="py-20 px-4 sm:px-6 lg:px-8 bg-background"
+      className="relative py-16 px-4 sm:px-6 lg:px-8 bg-background scroll-mt-20 overflow-hidden"
       ref={ref}
     >
+      {/* Stronger burgundy atmosphere (dark mode only) */}
+      <div
+        aria-hidden="true"
+        className="brush brush-b w-[640px] h-[360px] -bottom-32 left-1/2 -translate-x-1/2 opacity-50"
+      />
       <motion.div
-        className="max-w-2xl mx-auto"
+        className="relative max-w-2xl mx-auto"
         variants={staggerContainer}
         initial="initial"
         animate={isVisible ? "animate" : "initial"}
       >
         <motion.h2
           variants={fadeUp}
-          className="text-4xl font-bold text-foreground mb-4 text-center"
+          className="text-3xl font-bold text-foreground mb-3 text-center"
         >
           Let&apos;s Connect
         </motion.h2>
 
         <motion.p
           variants={fadeUp}
-          className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto"
+          className="text-center text-muted-foreground mb-8 max-w-2xl mx-auto"
         >
           I&apos;m always open to discussing internship opportunities, software
           development projects, data analytics, research collaborations, or
-          simply connecting with fellow professionals.
+          connecting with fellow professionals.
         </motion.p>
 
         <motion.form
           variants={fadeUp}
           onSubmit={handleSubmit}
-          className="space-y-6 p-8 rounded-xl bg-secondary/30 border border-border"
+          className="relative gloss surface space-y-5 p-5 sm:p-6 rounded-xl bg-card border border-border"
         >
           {/* Name */}
           <div>
@@ -96,7 +101,7 @@ export function Contact() {
               onChange={handleChange}
               required
               placeholder="Your name"
-              className="w-full px-4 py-3 rounded-lg bg-background border border-border focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-colors text-foreground placeholder-muted-foreground"
+              className="w-full px-4 py-2.5 rounded-lg bg-background border border-border focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-colors text-foreground placeholder-muted-foreground"
             />
           </div>
 
@@ -117,7 +122,7 @@ export function Contact() {
               onChange={handleChange}
               required
               placeholder="your@email.com"
-              className="w-full px-4 py-3 rounded-lg bg-background border border-border focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-colors text-foreground placeholder-muted-foreground"
+              className="w-full px-4 py-2.5 rounded-lg bg-background border border-border focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-colors text-foreground placeholder-muted-foreground"
             />
           </div>
 
@@ -136,9 +141,9 @@ export function Contact() {
               value={formData.message}
               onChange={handleChange}
               required
-              rows={5}
-              placeholder="Tell me about your project..."
-              className="w-full px-4 py-3 rounded-lg bg-background border border-border focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-colors text-foreground placeholder-muted-foreground resize-none"
+              rows={4}
+              placeholder="Tell me about the role, project, or collaboration you have in mind..."
+              className="w-full px-4 py-2.5 rounded-lg bg-background border border-border focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-colors text-foreground placeholder-muted-foreground resize-none"
             />
           </div>
 
@@ -146,14 +151,15 @@ export function Contact() {
           <button
             type="submit"
             disabled={submitted}
-            className="w-full inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg bg-primary text-primary-foreground font-semibold hover:shadow-lg hover:scale-105 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+            aria-live="polite"
+            className="btn-lux w-full inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-lg bg-primary text-primary-foreground font-semibold transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
           >
             {submitted ? (
               <span>Message Sent!</span>
             ) : (
               <>
                 Send Message
-                <Send size={20} />
+                <Send size={18} />
               </>
             )}
           </button>
@@ -162,16 +168,16 @@ export function Contact() {
         {/* Contact Information */}
         <motion.div
           variants={fadeUp}
-          className="mt-12 pt-8 border-t border-border"
+          className="mt-8 pt-6 border-t border-border"
         >
-          <p className="text-center text-muted-foreground mb-6">
+          <p className="text-center text-muted-foreground mb-4">
             Or reach out directly
           </p>
 
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <a
               href="mailto:zakiyahyasmin1@gmail.com"
-              className="text-primary font-medium hover:underline"
+              className="text-primary font-medium hover:underline break-all text-center focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary rounded-sm"
             >
               zakiyahyasmin1@gmail.com
             </a>
@@ -180,13 +186,13 @@ export function Contact() {
 
             <a
               href="tel:+6282234171488"
-              className="text-primary font-medium hover:underline"
+              className="text-primary font-medium hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary rounded-sm"
             >
               +62 822-3417-1488
             </a>
           </div>
 
-          <p className="text-center text-muted-foreground text-sm mt-6">
+          <p className="text-center text-muted-foreground text-sm mt-4">
             Based in Indonesia • Available for Internship, Freelance, and
             Collaboration Opportunities
           </p>

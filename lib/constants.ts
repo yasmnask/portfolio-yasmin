@@ -8,7 +8,7 @@ export const NAVIGATION = [
 
 export const SKILLS = {
   Frontend: ["React", "Next.js", "TypeScript", "Tailwind CSS"],
-  Backend: ["Laravel", "PHP", "MySQL", "REST API"],
+  Backend: ["Laravel", "PHP", "MySQL", "REST API", "Strapi"],
   "UI/UX Design": ["Figma", "Wireframing", "Prototyping", "Design System"],
   "Data Analysis": [
     "SQL",
@@ -16,7 +16,16 @@ export const SKILLS = {
     "Dashboard Analysis",
     "Data Cleaning",
   ],
-  Tools: ["Git", "GitHub", "Postman", "Laragon", "DigitalOcean", "VS Code"],
+  Tools: [
+    "Git",
+    "GitHub",
+    "Postman",
+    "Laragon",
+    "DigitalOcean",
+    "VS Code",
+    "Docker",
+    "XAMPP",
+  ],
 };
 
 export const EXPERIENCE = [
@@ -39,7 +48,7 @@ export const EXPERIENCE = [
   {
     title: "Undergraduate of Information Systems",
     company:
-      'Universitas Pembangunan Nasional "Veteran" Jawa Timur | GPA 3.87/4.00',
+      'Universitas Pembangunan Nasional "Veteran" Jawa Timur | GPA 3.89/4.00',
     period: "2023 - Present",
     description:
       "Completed various academic projects in System Analysis and Design, including MySQL-based databases and Agile-driven information systems. Developed mobile applications using Flutter, desktop applications with Visual Basic, and web applications using Laravel, demonstrating both technical proficiency and practical problem-solving skills.",
@@ -147,22 +156,17 @@ export const PROJECTS = [
 export const SOCIAL_LINKS = [
   {
     label: "GitHub",
-    href: "https://github.com",
+    href: "https://github.com/yasmnask",
     icon: "github",
   },
   {
     label: "LinkedIn",
-    href: "https://linkedin.com",
+    href: "https://www.linkedin.com/in/zakiyahyasmin/",
     icon: "linkedin",
   },
   {
-    label: "Twitter",
-    href: "https://twitter.com",
-    icon: "twitter",
-  },
-  {
     label: "Email",
-    href: "mailto:hello@example.com",
+    href: "mailto:zakiyahyasmin1@gmail.com",
     icon: "mail",
   },
 ];

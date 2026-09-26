@@ -82,14 +82,4 @@ export const scaleIn: Variants = {
   },
 }
 
-export const hoverScale = {
-  whileHover: { scale: 1.05 },
-  whileTap: { scale: 0.98 },
-}
 
-export const textHoverGlow = {
-  initial: { textShadow: '0px 0px 0px rgba(0,0,0,0)' },
-  whileHover: {
-    textShadow: '0px 0px 8px rgba(220,38,38,0.5)',
-  },
-}
